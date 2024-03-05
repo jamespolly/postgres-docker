@@ -21,6 +21,6 @@ Postgres DB and pgadmin with Docker Compose.
 5. Populate other fields as described [here](https://github.com/docker/awesome-compose/tree/master/postgresql-pgadmin#add-postgres-database-to-pgadmin).
 
 ## Using host machine data in pgadmin
-1. The host directory `./pgadmin` is linked to the pgadmin container directory `/var/lib/pgadmin`. This needs to be empty when the containers are first started, as pgadmin will populate user session storage in this directory.
-2. Once the containers are up, pgadmin will have created the directory `/var/lib/pgadmin/storage/admin_admin.com` for the user with email `admin@admin.com`.
-3. Scripts and data may be placed in `./pgadmin/storage/admin_admin.com` for use in pgadmin.
+1. The host directory `./pgadmin` is linked to the pgadmin container directory `/var/lib/pgadmin`. This host directory needs to be empty when the containers are first started, as pgadmin will populate user session storage in this directory.
+2. Once the containers are up, pgadmin will have created the directory `/var/lib/pgadmin/storage/admin_admin.com` (in the pgadmin container) for the user with email `admin@admin.com`.
+3. Scripts and data may be placed in the host directory `./pgadmin/storage/admin_admin.com` for use in the pgadmin container.
