@@ -4,7 +4,7 @@ Postgres DB and pgadmin with Docker Compose.
 ## Setup postgres and pgadmin
 1. Obtain the following images:
     - `docker pull postgres:14.5` following instructions [here](https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/).
-    - `docker pull dpage/pgadmin4:latest'
+    - `docker pull dpage/pgadmin4:latest`
 2. Edit compose.yaml file as described [here](https://github.com/docker/awesome-compose/tree/master/postgresql-pgadmin).
 4. Edit the .env file for updating variables. Locate this in the same directory as the compose yaml configuration.
 5. From the directory containing the `.env` and the `compose.yaml` files type: `docker compose up`
