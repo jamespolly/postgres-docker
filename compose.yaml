@@ -1,0 +1,36 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PW}
+      - POSTGRES_DB=${POSTGRES_DB} #optional (specify default database instead of $POSTGRES_DB)
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      # The following scripts initialize a database with tables and values.
+      # copy the sql script to create tables
+      - ./sqldata/create_db_tables_pg.sql:/docker-entrypoint-initdb.d/create_db_tables.sql
+      # copy the sql script to fill tables
+      - ./sqldata/load_db_tables_pg.sql:/docker-entrypoint-initdb.d/load_db_tables_pg.sql
+      # Mount the directory to store the database on the host.
+      - ./pgdata:/var/lib/postgresql/data
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    user: root
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_MAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
+    ports:
+      - "5050:80"
+    restart: always
+    volumes:
+      # - pgadmin-data:/home/james.polly/repos/de-sandbox/data/pgadmin
+      - /home/james.polly/repos/de-sandbox/data/pgadmin:/var/lib/tmp
+
+# volumes:
+#   local_pgdata:/home/james.polly/repos/de-sandbox/data/postgres
+#   pgadmin-data:/home/james.polly/repos/de-sandbox/data/pgadmin
